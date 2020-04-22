@@ -1,0 +1,14 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "wt",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "24.8.0"
+  }
+}
