@@ -1,5 +1,6 @@
-const tempTest = require('../src/view/index.js')
-const { testOne, testTwo } = tempTest
+import { testOne, testTwo } from '../src/view/index'
+// const tempTest = require('../src/view/index.js')
+// const { testOne, testTwo } = tempTest
 
 test('服务-1', () =>{
   expect(testOne(300)).toBe('至尊')
