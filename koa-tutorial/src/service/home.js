@@ -1,3 +1,4 @@
+// api管理(与数据库的交互)
 module.exports = {
     register: async (name, pwd) =>{
         let data

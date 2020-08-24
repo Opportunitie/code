@@ -1,21 +1,10 @@
 const Koa = require('koa')
-const path = require('path')
-const bodyPaser = require('koa-bodyparser')
-const nunjucks = require('koa-nunjucks-2')
-
 const router = require('./router')
+const middleware = require('./middleware')
 
 const app = new Koa()
 
-app.use(nunjucks({
-    ext: 'html',
-    path: path.join(__dirname, '/layout.html'), // 指点视图目录
-    nunjucksConfig: {
-        trimBlocks: true // 开启转义 防xss
-    }
-}))
-
-app.use(bodyPaser())
+middleware(app)
 
 router(app)
 

@@ -1,3 +1,4 @@
+// 路由配置
 const router = require('koa-router')()
 
 const HomeController = require('../controller/home')
