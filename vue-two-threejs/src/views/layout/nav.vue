@@ -15,8 +15,9 @@
             <span slot="title">three.js-study</span>
           </div>
         </template>
-        <el-menu-item index="/three" class="nav-menu-items">demo1</el-menu-item>
-        <el-menu-item index="/" class="nav-menu-items">demo2</el-menu-item>
+        <el-menu-item index="/three" class="nav-menu-items">3D立方体</el-menu-item>
+        <el-menu-item index="/three/line" class="nav-menu-items">画线</el-menu-item>
+        <el-menu-item index="/three/word" class="nav-menu-items">文字</el-menu-item>
       </el-submenu>
       <!-- <el-menu-item-group>
           <span slot="title">分组一</span>
@@ -25,7 +26,7 @@
         </el-menu-item-group>
         <el-menu-item-group title="分组2">
           <el-menu-item index="1-3">选项3</el-menu-item>
-        </el-menu-item-group>
+        </el-menu-item-group>v   
         <el-submenu index="1-4">
           <span slot="title">选项4</span>
           <el-menu-item index="1-4-1">选项1</el-menu-item>
@@ -60,7 +61,7 @@ export default {
 
 <style lang="less" scoped>
 .nav {
-  width: 100%;
+  width: 101%;
   font-size: 24px;
   .nav-menu {
     .nav-sub-menu {

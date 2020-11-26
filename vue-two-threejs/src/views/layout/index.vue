@@ -42,7 +42,7 @@ import Navigates from './nav.vue'
     
   }
   .aside{
-    width: 100px;
+    width: 200px;
     background-color: #001529;
   }
   .main{

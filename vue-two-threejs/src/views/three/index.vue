@@ -39,8 +39,8 @@ export default {
       ); // 正交（orthographic） 透视（perspective）
       this.camera.position.z = 2; // 相机的位置 (positon: 控制相机在整个3D环境中的位置 , lookAt:控制相机的焦点位置，决定相机的朝向)
       // 建立一个物体对象
-      let material = new this.$Three.MeshNormalMaterial()
-      let geometry = new this.$Three.BoxGeometry(1, 1, 1);
+      let material = new this.$Three.MeshNormalMaterial(); // 材质
+      let geometry = new this.$Three.BoxGeometry(1, 1, 1); // 物体
       // let material = new this.$Three.MeshBasicMaterial();
       this.mesh = new this.$Three.Mesh(geometry, material);
       this.scene.add(this.mesh);
@@ -51,7 +51,8 @@ export default {
       container.appendChild(this.renderer.domElement);
     },
     animate: function () {
-      requestAnimationFrame(this.animate);
+      this.renderer.setAnimationLoop(this.animate)
+      // requestAnimationFrame(this.animate);
       this.mesh.rotation.x += 0.01;
       this.mesh.rotation.y += 0.02;
       this.renderer.render(this.scene, this.camera);
