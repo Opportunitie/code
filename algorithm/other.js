@@ -35,6 +35,7 @@ console.log("result", result);
 
 // 实现一个Promise.finally
 Promise.prototype.finally = function (callback) {
+  console.log('this',this)
   let P = this.constructor;
   return this.then(
     (value) => P.resolve(callback()).then(() => value),
@@ -47,7 +48,7 @@ function newArr(arr) {
   let sortArr = Array.from(new Set(arr)).sort((a, b) => a - b);
   let map = new Map();
   sortArr.forEach((item) => {
-    const key = Math.floor(item / 10);
+    const key = Math.floor(item / 10); // Math.ceil() Math.floor() Math.round()
     let group = map.get(key) || [];
     group.push(item);
     map.set(key, group);
@@ -56,7 +57,7 @@ function newArr(arr) {
 }
 console.log(newArr([2, 10, 3, 4, 5, 11, 10, 11, 20]));
 
-//如何把一个字符串的大小写取反（大写变小写小写 变大写），例如 ’AbC' 变成 'aBc' 。
+//如何把一个字符串的大小写取反（大写变小写小写 变大写），例如 ’AbC' 变成 'aBc' 。 
 const fanString = "aBc";
 function fanZhuanStirng(str) {
   return str
