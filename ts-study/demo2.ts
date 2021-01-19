@@ -1,5 +1,5 @@
 let count: number = 1
-count
+
 interface XiaoJieJieOne{
   uname: string,
   age:number

@@ -11,12 +11,16 @@ const xiaoJieJie: {
   age: 18,
 };
 
-const xiaoJieJies: string[] = ["xiedajio", "aaaaa", "123"];
+const xiaoJieJies: Array<string>= ["xiedajio", "aaaaa", "123"];
+
+const xiaoJieJies1: string[]= ["xiedajio", "aaaaa", "123"];
 
 class Person {}
 
 const dajiao: Person = new Person();
 
-const jiaoXiaoJieJie : ()=>string = ()=> {return "122"}
+const jiaoXiaoJieJie: () => string = () => {
+  return "122";
+};
 
 // 对象类型 数据类型 类类型 函数类型
