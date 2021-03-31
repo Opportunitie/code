@@ -125,6 +125,22 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@babylonjs/core@4.2.0", "@babylonjs/core@^4.2.0":
+  version "4.2.0"
+  resolved "https://registry.npm.taobao.org/@babylonjs/core/download/@babylonjs/core-4.2.0.tgz#d1cfd43d7e3d2e58cde79083f04eeb607f6c8f18"
+  integrity sha1-0c/UPX49LljN55CD8E7rYH9sjxg=
+  dependencies:
+    tslib ">=1.10.0"
+
+"@babylonjs/loaders@^4.2.0":
+  version "4.2.0"
+  resolved "https://registry.npm.taobao.org/@babylonjs/loaders/download/@babylonjs/loaders-4.2.0.tgz#a9902dc277c16dcd22cd1907f86310e211c247cb"
+  integrity sha1-qZAtwnfBbc0izRkH+GMQ4hHCR8s=
+  dependencies:
+    "@babylonjs/core" "4.2.0"
+    babylonjs-gltf2interface "4.2.0"
+    tslib ">=1.10.0"
+
 "@types/json5@^0.0.29":
   version "0.0.29"
   resolved "https://registry.npm.taobao.org/@types/json5/download/@types/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
@@ -1342,6 +1358,11 @@ babylon@^6.18.0:
   version "6.18.0"
   resolved "https://registry.npm.taobao.org/babylon/download/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
   integrity sha1-ry87iPpvXB5MY00aD46sT1WzleM=
+
+babylonjs-gltf2interface@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.npm.taobao.org/babylonjs-gltf2interface/download/babylonjs-gltf2interface-4.2.0.tgz#b0ef1e11e3574cf2c6f573d0c5c34857a2a7b322"
+  integrity sha1-sO8eEeNXTPLG9XPQxcNIV6KnsyI=
 
 balanced-match@^0.4.2:
   version "0.4.2"
@@ -9253,6 +9274,11 @@ tsconfig@^7.0.0:
     "@types/strip-json-comments" "0.0.30"
     strip-bom "^3.0.0"
     strip-json-comments "^2.0.0"
+
+tslib@>=1.10.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/tslib/download/tslib-2.1.0.tgz?cache=0&sync_timestamp=1609887539329&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftslib%2Fdownload%2Ftslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
+  integrity sha1-2mCGDxwuyqVwOrfTm8Bba/mIuXo=
 
 tslib@^2.0.1:
   version "2.0.3"
