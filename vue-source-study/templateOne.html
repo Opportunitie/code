@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+      第一步：写模板
+      第二步：创建实例
+      第三步：挂载
+     -->
+    <div id="root">
+      <div>
+        <div>
+          <p>{{name}}-{{message}}</p>
+        </div>
+      </div>
+      <p>{{name}}</p>
+      <p>{{message}}</p>
+    </div>
+  </body>
+</html>
+<!-- 
+    // 1. 拿到模板
+    // 2. 拿到数据 data
+    // 3. 将数据与模板结合得到的是HTML元素(DOM元素)
+    // 4.放在页面中
+ -->
+<script>
+  let tempNode = document.querySelector('#root')
+  let data = {
+    name: "张三",
+    message: "是一个person！",
+  };
+  // 真正的Vue源码中DOM ->字符串模板->VNode ->真正的DOM
+  function compiler(template, data){
+    let childNodes = template.childNodes
+    debugger
+    for(let i = 0; i < childNodes.length; i++){
+      let type = childNodes[i].nodeType; // 1表示元素节点， 3表示文版节点 ， 8 表示注释节点
+      if(type === 3){
+        let txt = childNodes[i].nodeValue
+        txt = txt.replace(/\{\{(.+?)\}\}/g, function(_, g){
+          key = g.trim();
+          return data[key]
+        })//  第三步： 挂载
+        childNodes[i].nodeValue = txt
+      } else if(type === 1){
+        compiler(childNodes[i],data)
+      }
+    }
+  }
+  let generateDom = tempNode.cloneNode(true)
+  console.log('tempNode',tempNode);
+  compiler(generateDom,data)
+  console.log('generateDom',generateDom);
+  root.parentNode.replaceChild(generateDom,root)
+</script>
