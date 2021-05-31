@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="root">
+      <div>
+        <div title="1" class="a">hello1</div>
+        <div title="2">hello2</div>
+        <div title="3">hello3</div>
+        <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  // 虚拟Dom -> 性能
+  // <div /> => {tag: "div  "}
+  // 文本节点 => { tag: undefined, value: "文本"}
+  // <div title="1" class="c" />  => {tag: "div", data: {title: "1", class:"c"}}
+  // <div><div />div> =>{tag: "div",children: [{tag: "div"}]}
+
+  class Vnode {
+    constructor(tag, data, value, type) {
+      this.tag = tag && tag.toLowerCase();
+      this.data = data;
+      this.value = value;
+      this.type = type;
+      this.children = [];
+    }
+    appendChild(vnode) {
+      this.children.push(vnode);
+    }
+  }
+
+  // Vue中源码使用栈结构，使用栈结构存储父节点来实现递归生成virtualDom
+  // 真实dom转换成虚拟dom
+  function getVNode(node) {
+    let nodeType = node.nodeType;
+    let _vnode = null;
+    if (nodeType === 1) {
+      let nodeName = node.nodeName;
+      let attrs = node.attributes; // 伪数组
+      let _attrObj = {};
+      for (let i = 0; i < attrs.length; i++) {
+        _attrObj[attrs[i].nodeName] = attrs[i].nodeValue;
+      }
+      _vnode = new Vnode(nodeName, _attrObj, undefined, nodeType);
+
+      let childNodes = node.childNodes;
+      for (let j = 0; j < childNodes.length; j++) {
+        _vnode.appendChild(getVNode(childNodes[j]));
+      }
+    } else if (nodeType === 3) {
+      _vnode = new Vnode(undefined, undefined, node.nodeValue, nodeType);
+    }
+
+    return _vnode;
+  }
+
+  // 虚拟DOM转换成虚拟DOM
+
+  function parseVNode(vnode) {
+    let nodeType = vnode.type;
+    let _node = null;
+    if (nodeType === 3) {
+      _node = document.createTextNode(vnode.value);
+    } else if (nodeType === 1) {
+      _node = document.createElement(vnode.tag)
+      let data = vnode.data;
+      debugger
+      Object.keys(data).forEach((key) => {
+        let attrName = key;
+        let attrValue = data[key];
+        _node.setAttribute(attrName, attrValue);
+      });
+
+      let children = vnode.children;
+      children.forEach((subvnode) => {
+        _node.appendChild(parseVNode(subvnode));
+      });
+    }
+    return _node
+  }
+
+  let root = document.querySelector("#root");
+  let vnode = getVNode(root)
+  console.log(vnode);
+  let realDom = parseVNode(vnode)
+  console.log(realDom);
+
+  // 柯里化
+  // 偏函数
+  // 高阶函数
+</script>
