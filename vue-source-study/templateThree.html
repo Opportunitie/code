@@ -60,7 +60,7 @@
     this._parent = this._templateDom.parentNode;
     this.render();
   }
-  // 将模板和数据合并得到html 添加到页面中
+  // 将虚拟Dom转换成真正的Dom添加到页面中
   MyVue.prototype.render = function () {
     this.compiler();
   };
