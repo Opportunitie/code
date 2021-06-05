@@ -1,12 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+  </head>
+
+  <body>
+    <div id="root">
+      <div>
+        <div title="1" class="a">{{name}}</div>
+        <div title="2">{{age}}</div>
+        <div title="3">{{gender}}</div>
+        <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+      </div>
+    </div>
+  </body>
 </html>
+
+<script>
+  // 虚拟DOM的构造函数
+  class Vnode {
+    constructor(tag, data, value, type) {
+      this.tag = tag && tag.toLowerCase();
+      this.data = data;
+      this.value = value;
+      this.type = type;
+      this.children = [];
+    }
+    appendChild(vnode) {
+      this.children.push(vnode);
+    }
+  }
+
+  // 真实dom转换成虚拟dom
+  function getVNode(node) {
+    let nodeType = node.nodeType;
+    let _vnode = null;
+    if (nodeType === 1) {
+      let nodeName = node.nodeName;
+      let attrs = node.attributes; // 伪数组
+      let _attrObj = {};
+      for (let i = 0; i < attrs.length; i++) {
+        _attrObj[attrs[i].nodeName] = attrs[i].nodeValue;
+      }
+      _vnode = new Vnode(nodeName, _attrObj, undefined, nodeType);
+
+      let childNodes = node.childNodes;
+      for (let j = 0; j < childNodes.length; j++) {
+        _vnode.appendChild(getVNode(childNodes[j]));
+      }
+    } else if (nodeType === 3) {
+      _vnode = new Vnode(undefined, undefined, node.nodeValue, nodeType);
+    }
+
+    return _vnode;
+  }
+
+  // 虚拟DOM转换成真正DOM
+  function parseVNode(vnode) {
+    let nodeType = vnode.type;
+    let _node = null;
+    if (nodeType === 1) {
+      _node = document.createElement(vnode.tag);
+      let data = vnode.data;
+      Object.keys(data).forEach((key) => {
+        let attrName = key;
+        let attrValue = data[key];
+        _node.setAttribute(attrName, attrValue);
+      });
+
+      let children = vnode.children;
+      children.forEach((subvnode) => {
+        _node.appendChild(parseVNode(subvnode));
+      });
+    } else if (nodeType === 3) {
+      _node = document.createTextNode(vnode.value);
+    }
+    return _node;
+  }
+  // 根据路径访问对象成员
+  function getValueByPath(obj, path) {
+    let res = obj;
+    let prop;
+    let paths = path.split(".");
+    while ((prop = paths.shift())) {
+      res = res[prop];
+    }
+    return res;
+  }
+
+  // 将vnode（带坑的）和data结合生成vnode  模拟（AST -> Vnode）
+  function combine(vnode, data) {
+    const _tag = vnode.tag;
+    const _data = vnode.data;
+    let _value = vnode.value;
+    const _type = vnode.type;
+    const _children = vnode.children;
+
+    let _vnode = null;
+    if (_type === 3) {
+      // 文本节点
+      _value = _value.replace(/\{\{(.+?)\}\}/g, function (_, g) {
+        return getValueByPath(data, g.trim());
+      });
+      _vnode = new Vnode(undefined, undefined, _value, _type);
+    } else if (_type === 1) {
+      // 元素节点
+      _vnode = new Vnode(_tag, _data, _value, _type);
+      _children.forEach((_subvnode) =>
+        _vnode.appendChild(combine(_subvnode, data))
+      );
+    }
+    return _vnode
+  }
+
+  function MyVue(options) {
+    this._data = options.data;
+    const elm = document.querySelector(options.el);
+    this._template = elm
+    this._parent = elm.parentNode;
+    this.mount(); //挂载
+  }
+
+  MyVue.prototype.mount = function () {
+    // 需要提供一个render方法：生成虚拟DOm
+    this.render = this.createRenderFn(); //
+    this.mountComponent();
+  };
+
+  /*
+        在真正的Vue中使用了二次提交的设计结构
+        1. 在页面中的DOM和虚拟DOM是意义对应的关系
+        2. 先由AST和Data生成Vnode（新的虚拟DOM ，render）
+        3. 将旧的Vnode 和 新的Vnode比较（diff），更新（update）
+    */
+  MyVue.prototype.mountComponent = function () {
+    let mount =  () => {
+      this.update(this.render());
+    };
+    mount();
+  };
+  // 生成AST并且缓存，（使用虚拟DOM来模拟）
+  MyVue.prototype.createRenderFn = function () {
+    let _ast = getVNode(this._template);
+    return function render() {
+      let _temp = combine(_ast, this._data);
+      return _temp;
+    };
+  };
+  // 将虚拟DOM渲染到页面上， diff算法就在这里面
+  MyVue.prototype.update = function (vnode) {
+    // 直接生成HTML DOM replaceChild
+    let realDom = parseVNode(vnode)
+    this._parent.replaceChild(realDom, document.querySelector("#root")) 
+    // 直接替换真实DOM，在vue中是部分替换
+  };
+
+  let app = new MyVue({
+    el: "#root",
+    data: {
+      name: "张三",
+      age: 18,
+      gender: "男",
+    },
+  });
+</script>
