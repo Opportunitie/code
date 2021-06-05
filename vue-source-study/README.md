@@ -32,4 +32,4 @@ render的作用是将虚拟Dom转换为真正的Dom加载到页面
     - vue的入口
 4. server 服务端，主要将vue用在服务端的处理代码（暂时没看）
 5. sfc 单文件组件（暂时没看，用在vue-cli）
-6.shared 公共工具，方法
+6. shared 公共工具，方法
