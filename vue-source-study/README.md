@@ -14,10 +14,55 @@ render的作用是将虚拟Dom转换为真正的Dom加载到页面
 
 我们可以将代码进行优化，将虚拟DOM缓存起来，生成一个函数，函数 只需要传入数据就可以得到真正的DOM
 
+# 响应式原理
+- 我们在使用VUE时候，赋值属性获得属性都是直接使用的Vue实例
+- 我们在设计属性值的时候，页面的数据更新
+
+    ```js
+    Object.defineProperty(target,atts,{
+        writable,
+        cofigurable,
+        enumerable, // 控制是否可枚举，是不是可以被for-in取出来
+        set(){}, // 赋值触发
+        get(){} // 取值触发
+    })
+    ```
+- 实际开发中对象一般有多级,使用递归处理
+```js
+    let o = {
+        list: [{}],
+        ads: [{}],
+        user: {}
+    }
+```
+对于对象可以使用递归来响应式化，但是数组也需要处理
+ - push
+ - pop
+ - shift
+ - unShift
+ - reverse
+ - sort
+ - splice
+
+ 1. 在该改变数组数据的时候，要发出通知
+    - vue2中的缺陷，数组发生变化，设置length没法通知（vue3中使用proxy语法Es6的语法解决了这个问题）
+ 2. 加入元素应该变成响应式的
+ 
+ 技巧：一个函数已经定义了，但是我们需要扩展其功能，一般的处理方法：
+
+ 1. 使用一个临时的函数名存储函数
+ 2. 重新定义原来的函数
+ 3. 定义扩展的功能
+ 4. 调用临时的那个函数
+
+扩展数组的push和pop怎么处理？？？
+
+- 修改要进行响应式化的数组的原型 （_proto_）
+
 # 事件模型发布订阅者模式
 ![发布订阅者模型](./assets/image/publishSubscriberModel.png)
 
-
+- vue中Observer 与 Watcher 和 Dep的关系
 # Vue源码解读
 1. 各个文件夹的作用
 2. Vue初始化流程
