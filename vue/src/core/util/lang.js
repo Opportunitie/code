@@ -17,6 +17,9 @@ export function isReserved (str: string): boolean {
 
 /**
  * Define a property.
+ * 使用参数， 将可枚举性变成可控，递归时，使用循环获得key的时候，不可枚举的是访问不到的。
+ * 
+ * 在vue中实例存在大量的循环引用，在递归遍历对象成员的时候，避免了 死递归
  */
 export function def (obj: Object, key: string, val: any, enumerable?: boolean) {
   Object.defineProperty(obj, key, {
@@ -31,7 +34,7 @@ export function def (obj: Object, key: string, val: any, enumerable?: boolean) {
  * Parse simple path.
  */
 const bailRE = new RegExp(`[^${unicodeRegExp.source}.$_\\d]`)
-export function parsePath (path: string): any {
+export function parsePath (path: string): any { // 用于 匹配xxx.xx.x正则表达式
   if (bailRE.test(path)) {
     return
   }

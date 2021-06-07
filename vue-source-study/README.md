@@ -138,3 +138,24 @@ subs中存储的是 **知道要渲染什么属性的watcher**
 4. server 服务端，主要将vue用在服务端的处理代码（暂时没看）
 5. sfc 单文件组件（暂时没看，用在vue-cli）
 6. shared 公共工具，方法
+
+# 主要内容
+1. vue源码
+    1. Observer
+    2. watch 和 computed
+    3. 简单说明一下 patch
+# observer 文件夹中各个文件的作用
+- array.js 创建含有重写， 数组方法的数组，让所有的响应式数组继承自该数组
+- dep.js Dep类
+- index.js Observer类，observe的工厂函数
+- scheduler.js vue中任务调度的工具，watcher执行的核心
+- traverse.js 遍历递归响应式数据，目的是触发依赖收集
+- watcher.js Watcher类
+
+面试题： 对数组去重
+```js
+let a = [1,2,2,2,3,3,4,2,5,6]
+let _set = { }
+let _newArry = []
+a.forEach( item => _set[item] || (_set[item] = true, _newArray.push(item)))
+```
