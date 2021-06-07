@@ -77,5 +77,5 @@ function combine(vnode, data) {
             _vnode.appendChild(combine(_subvnode, data))
         );
     }
-    return _vnode;
+    return _vnode; // 相当于虚拟DOM
 }
