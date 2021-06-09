@@ -1,11 +1,11 @@
-// function *main() {
-//   let x = yield "starting";
-//   console.log(x);
-//   let y = yield (x * 2);
+function *main() {
+  let x = yield "starting";
+  console.log(x);
+  let y = yield (x * 2);
 
-//   console.log(x, y);
-//   return x + y;
-// }
+  console.log(x, y);
+  return x + y;
+}
 
 // let it = main();
 
@@ -26,7 +26,9 @@ function co(gen){
     if(result.done){
       return result.value
     }
-    result.value.then(data => next(data))
+    next(result.value)
+    // result.value.then(data => next(data))
   }
   next()
 }
+co(main)
