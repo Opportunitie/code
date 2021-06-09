@@ -188,7 +188,7 @@ export function queueWatcher (watcher: Watcher) {
         flushSchedulerQueue()
         return
       }
-      nextTick(flushSchedulerQueue) // 让任务队列中的watcher
+      nextTick(flushSchedulerQueue) // 让任务队列中的watcher在“下一次事件循环”中触发 不阻塞当前的处理逻辑
     }
   }
 }
