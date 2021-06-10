@@ -41,9 +41,9 @@ export default class Watcher {
   // 在数据发生变化的时候，根据dep找到关联的watcher， 依次调用update
   // 执行完成后会清空watcher
   deps: Array<Dep>;
-  newDeps: Array<Dep>;
-
   depIds: SimpleSet;
+
+  newDeps: Array<Dep>;
   newDepIds: SimpleSet;
 
   before: ?Function;  // Watcher触发之前的， 类似于生命周期
