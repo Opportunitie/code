@@ -3,6 +3,10 @@ Function.prototype.myCall = function(context){
         throw new TypeError('Error')
     }
 
+    if(typeof context !== 'object'){
+        throw new TypeError('parameter is no a object!')
+    }
+    
     context = context || window
     context.fn = this
     const arg = [...arguments].slice(1)
