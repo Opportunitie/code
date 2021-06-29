@@ -1,4 +1,4 @@
-// 监听文件发生变化
+// 监听文件发生变化 watchFile
 let fs = require('fs')
 let stream = fs.createReadStream(__dirname + '/test.json')
 let files = fs.readdirSync(process.cwd())
