@@ -13,7 +13,7 @@ function send(theName){
         res.on('data',function(chunk){
             console.log('\n' + " " + chunk);
         })
-        
+
         res.on('end',function(){
             console.log('\n \033[90m request complete! \033[39m');
             process.stdout.write('\n your name:')
