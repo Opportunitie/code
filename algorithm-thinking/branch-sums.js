@@ -1,3 +1,4 @@
+// 二叉树个分支求和
 class BinaryTree {
     constructor(value) {
         this.value = value
