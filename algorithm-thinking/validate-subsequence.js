@@ -1,3 +1,4 @@
+// 寻找字串
 let arrayData = [-2, -1, 6, 3, 8, 9, 4, 5, 18]
 let sequenceArrayData = [-1, 3, 5, 18]
 
