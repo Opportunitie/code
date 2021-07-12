@@ -15,7 +15,7 @@ function depthFirstSearch(tree,array){
         return
     }
     array.push(tree.value)
-    for(child in tree.children){
+    for(child of tree.children){
         depthFirstSearch(child, array)
     }
     return array

@@ -1,4 +1,4 @@
-
+// 最大相邻学列之和
 // O(n) time | O(n) space
 function maxSubsetSumNoAdjacentOne(array){
     if(!array.length){

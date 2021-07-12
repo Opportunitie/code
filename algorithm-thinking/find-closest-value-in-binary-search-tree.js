@@ -24,7 +24,7 @@ function findClosestValueInBstHelperOne(tree, target, closerst){
 // AVG: O(logn) time | O(1) space
 // worst: O(n) time | O(1) space 
 function findClosestValueInBinaryTreeTwo(tree, target) {
-    return findClosestValueInBstHelper(tree, target, Infinity)
+    return findClosestValueInBstHelperTwo(tree, target, Infinity)
 }
 
 function findClosestValueInBstHelperTwo(tree, target, closerst){
