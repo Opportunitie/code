@@ -27,7 +27,7 @@ class RouteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
+    return ElevatedButton(
       onPressed: () {
         _navigateToXioaJieJie(context);
       },
@@ -39,7 +39,7 @@ class RouteButton extends StatelessWidget {
 _navigateToXioaJieJie(BuildContext context) async {
   final result = await Navigator.push(
       context, MaterialPageRoute(builder: (context) => const XiaoJieJie()));
-  Scaffold.of(context).showSnackBar(SnackBar(content: Text(result)));
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(result)));
 }
 
 class XiaoJieJie extends StatelessWidget {
@@ -54,19 +54,19 @@ class XiaoJieJie extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 Navigator.pop(context, "1号小姐姐：18166668888");
               },
               child: const Text("1号小姐姐"),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 Navigator.pop(context, "2号小姐姐：18166668888");
               },
               child: const Text("2号小姐姐"),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 Navigator.pop(context, "3号小姐姐：18166668888");
               },
