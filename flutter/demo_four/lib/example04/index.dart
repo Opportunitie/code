@@ -10,7 +10,7 @@ class Demo04 extends StatelessWidget {
         title: const Text('毛玻璃'),
         elevation: 0,
       ),
-      body: FrostedClassDemo(),
+      body: const FrostedClassDemo(),
     );
   }
 }
