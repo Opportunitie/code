@@ -9,6 +9,7 @@ import 'example04/index.dart';
 import 'example05/index.dart';
 import 'example05_01/index.dart';
 import 'example06/index.dart';
+import 'example07/index.dart';
 import 'example20/draggable_demo.dart';
 
 void main() => runApp(const MyApp());
@@ -115,7 +116,15 @@ class MyNav extends StatelessWidget {
                       Navigator.push(context, CustomRoute(const Example06()));
                     },
                     child: const Text('Example06'),
-                  ))
+                  )),
+                  const Padding(padding: EdgeInsets.fromLTRB(0, 0, 16.0, 0)),
+                  Expanded(
+                      child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context, CustomRoute(const Example07()));
+                    },
+                    child: const Text('Example07'),
+                  )),
                 ],
               ),
               Row(

@@ -48,7 +48,7 @@ export default {
       geometry.vertices.push(new this.$Three.Vector3(-10, 0, 0));
       geometry.vertices.push(new this.$Three.Vector3(0, 10, 0));
       geometry.vertices.push(new this.$Three.Vector3(10, 0, 0));
-      let line = new this.$Three.Line( geometry, material );
+      let line = new this.$Three.Line(geometry, material);
       this.scene.add(line);
     },
     animate: function () {

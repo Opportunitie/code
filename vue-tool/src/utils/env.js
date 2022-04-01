@@ -1,0 +1,1 @@
+export const host = process.env.NODE_ENV == 'development' ? 'http://dev.localcards.gov.vbooster.cn/tcmgr' : 'http://dev.localcards.gov.vbooster.cn/tcmgr'

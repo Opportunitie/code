@@ -14,18 +14,14 @@ class _DraggableDemoState extends State<DraggableDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('拖拽'),
-        elevation: 0,
-      ),
       body: Stack(
         children: <Widget>[
           const DraggableWidget(
-            offset: Offset(110.0, 80.0),
+            offset: Offset(80.0, 80.0),
             widgetColor: Colors.tealAccent,
           ),
           const DraggableWidget(
-            offset: Offset(210.0, 80.0),
+            offset: Offset(180.0, 80.0),
             widgetColor: Colors.redAccent,
           ),
           Center(

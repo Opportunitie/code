@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_2462451_8s88z2rvizv.css">
+  <link rel="icon" href="<%= BASE_URL %>rxe-logo.png">
+  <!-- 使用CDN的CSS文件 -->
+  <% for (var i in htmlWebpackPlugin.options.cdn &&
+      htmlWebpackPlugin.options.cdn.css) { %>
+  <link href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" rel="stylesheet" />
+  <% } %>
+  <!-- 使用CDN的CSS文件 -->
+  <title>阮小二业务管理系统</title>
+  <!-- <script src="http://localhost:8000/CLodopFuncs.js"></script> -->
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but 阮小二业务后台 doesn't work properly without JavaScript enabled. Please enable it to
+      continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <!-- 使用CDN的JS文件 -->
+  <% for (var i in htmlWebpackPlugin.options.cdn &&
+    htmlWebpackPlugin.options.cdn.js) { %>
+  <script src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"></script>
+  <% } %>
+  <!-- 使用CDN的JS文件 -->
+  <!-- <script>
+    let JSONP = document.createElement("script");
+    let href = window.location.href;
+    let reg = /^https:\/\/talentcards.vbooster.cn/g
+    let url = ''
+    if (reg.test(href)) {
+      url = "https://talentcards.vbooster.cn/data/config.js?callback=train"
+    } else {
+      url = "https://devminisdcard.vbooster.cn/data/config.js?callback=train"
+    }
+    JSONP.type = "text/javascript";
+    JSONP.src = url;
+    document.getElementsByTagName("head")[0].appendChild(JSONP);
+    function train(result) {
+      window.localStorage.setItem('config', JSON.stringify(result))
+    } 
+  </script> -->
+</body>
+
+</html>
