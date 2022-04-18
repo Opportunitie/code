@@ -1,6 +1,6 @@
 {
-    "name": "demo_one",
-    "short_name": "demo_one",
+    "name": "demo_five",
+    "short_name": "demo_five",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
