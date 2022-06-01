@@ -1,3 +1,4 @@
+import 'package:demo_five/example09/index.dart';
 import 'package:flutter/material.dart';
 // router animation
 import 'router/page_change_animation.dart';
@@ -10,6 +11,9 @@ import 'example05/index.dart';
 import 'example05_01/index.dart';
 import 'example06/index.dart';
 import 'example07/index.dart';
+import 'example08/index.dart';
+import 'example09/index.dart';
+import 'example10/index.dart';
 import 'example20/draggable_demo.dart';
 
 void main() => runApp(const MyApp());
@@ -124,6 +128,33 @@ class MyNav extends StatelessWidget {
                       Navigator.push(context, CustomRoute(const Example07()));
                     },
                     child: const Text('Example07'),
+                  )),
+                  const Padding(padding: EdgeInsets.fromLTRB(0, 0, 16.0, 0)),
+                  Expanded(
+                      child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context, CustomRoute(const Example08()));
+                    },
+                    child: const Text('Example08'),
+                  )),
+                ],
+              ),
+              Row(
+                children: [
+                  Expanded(
+                      child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context, CustomRoute(const Example09()));
+                    },
+                    child: const Text("Exanple09"),
+                  )),
+                  const Padding(padding: EdgeInsets.fromLTRB(0, 0, 16.0, 0)),
+                  Expanded(
+                      child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context, CustomRoute(const Example10()));
+                    },
+                    child: const Text("Exanple10"),
                   )),
                 ],
               ),
