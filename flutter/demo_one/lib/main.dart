@@ -14,6 +14,8 @@ import 'example07/index.dart';
 import 'example08/index.dart';
 import 'example09/index.dart';
 import 'example10/index.dart';
+import 'example11/index.dart';
+import 'example12/index.dart';
 import 'example20/draggable_demo.dart';
 
 void main() => runApp(const MyApp());
@@ -156,10 +158,26 @@ class MyNav extends StatelessWidget {
                     },
                     child: const Text("Exanple10"),
                   )),
+                  const Padding(padding: EdgeInsets.fromLTRB(0, 0, 16.0, 0)),
+                  Expanded(
+                      child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context, CustomRoute(const Example11()));
+                    },
+                    child: const Text("Exanple11"),
+                  )),
                 ],
               ),
               Row(
                 children: [
+                  Expanded(
+                      child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context, CustomRoute(const Example12()));
+                    },
+                    child: const Text("Exanple12"),
+                  )),
+                  const Padding(padding: EdgeInsets.fromLTRB(0, 0, 16.0, 0)),
                   Expanded(
                     child: ElevatedButton(
                         onPressed: () {

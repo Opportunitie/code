@@ -41,6 +41,7 @@ class _SplashScreenState extends State<SplashScreen>
       opacity: _controller,
       child: Image.network(
         "https://image1.h128.com/upload/202203/07/thumb_720_auto_202203072026010046.jpg",
+        width: 422,
         scale: 1.0,
         fit: BoxFit.cover,
       ),
